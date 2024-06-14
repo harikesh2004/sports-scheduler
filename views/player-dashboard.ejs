@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="header">
+        <span>Player Dashboard</span>
+        <form action="/logout" method="get">
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+    </div>
+    <div class="grid-container">
+        <% events.forEach(event => { %>
+        <div class="grid-item">
+            <div class="content">
+                <h3><%= event.name %></h3>
+                <p><%= event.date %> at <%= event.time %></p>
+                <p>Venue: <%= event.venue %></p>
+                <p>Team Limit: <%= event.team_limit %></p>
+                <p><%= event.description %></p>
+                <form action="/join-event" method="post" style="display:inline;">
+                    <input type="hidden" name="eventId" value="<%= event.id %>">
+                    <% if (joinedEventIds.includes(event.id)) { %>
+                        <button type="button" class="btn joined-btn" disabled>Joined</button>
+                    <% } else { %>
+                        <button type="submit" class="btn join-btn">Join Event</button>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</body>
+</html>

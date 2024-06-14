@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h2>Edit Event</h2>
+    <form action="/edit-event/<%= event.id %>" method="post">
+        <label for="name">Event Name:</label>
+        <input type="text" id="name" name="name" value="<%= event.name %>" required>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="<%= event.date %>" required>
+        
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" value="<%= event.time %>" required>
+        
+        <label for="venue">Venue:</label>
+        <input type="text" id="venue" name="venue" value="<%= event.venue %>" required>
+        
+        <label for="team_limit">Team Limit:</label>
+        <input type="number" id="team_limit" name="team_limit" value="<%= event.team_limit %>" required>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><%= event.description %></textarea>
+        
+        <button type="submit">Update Event</button>
+    </form>
+</body>
+</html>

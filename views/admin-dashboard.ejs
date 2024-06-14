@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="header">
+        <span>Admin Dashboard</span>
+        <form action="/logout" method="get">
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+    </div>
+    <div class="grid-container">
+        <!-- New Event Form -->
+        <div class="grid-container">
+            <!-- Box to Add New Event -->
+            <div class="grid-item">
+                <div class="content">
+                    <h3>Add New Event</h3>
+                    <a href="/add-event" class="btn">Add Event</a>
+                </div>
+            </div>
+        </div>
+
+        <% events.forEach(event => { %>
+        <div class="grid-item">
+            <div class="content">
+                <h3><%= event.name %></h3>
+                <p><%= event.date %> at <%= event.time %></p>
+                <p>Venue: <%= event.venue %></p>
+                <p>Team Limit: <%= event.team_limit %></p>
+                <p><%= event.description %></p>
+                <form action="/delete-event" method="post" style="display:inline;">
+                    <input type="hidden" name="eventId" value="<%= event.id %>">
+                    <button type="submit" class="btn" style="background-color: #dc3545;">Delete Event</button>
+                </form>
+                <a href="/edit-event/<%= event.id %>" class="btn" style="background-color: #ffc107;">Edit Event</a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</body>
+</html>
